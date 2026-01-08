@@ -411,5 +411,31 @@ if run:
     )
 
 else:
-    st.info("Заполните данные слева и нажмите кнопку.")
+    st.markdown(
+    """
+    <style>
+    .desktop-only { display: block; }
+    .mobile-only { display: none; }
+
+    @media (max-width: 768px) {
+        .desktop-only { display: none; }
+        .mobile-only { display: block; }
+    }
+    </style>
+
+    <div class="desktop-only">
+        <div class="stAlert stAlert-info">
+            Заполните данные слева и нажмите кнопку.
+        </div>
+    </div>
+
+    <div class="mobile-only">
+        <div class="stAlert stAlert-info">
+            Заполните данные сверху и нажмите кнопку.
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 
