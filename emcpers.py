@@ -12,8 +12,38 @@ API_URL = "https://dify.b3med.ru/v1/workflows/run"
 APP_RISK_KEY = "app-MZnEAgjZvHs4zO7RM5nohC6Y"
 APP_KR_KEY   = "app-IQSYqOjP3Yp2uqTTYPepw6sn"
 USER_ID = "streamlit-ui"
+# =========================
+# AUTH
+# =========================
+ACCESS_CODES = {
+    "emc2026"
+}
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+def login_gate():
+    st.markdown("## 🔒 Доступ ограничен")
+    st.markdown("Введите код доступа для продолжения")
+
+    code = st.text_input(
+        "Код доступа",
+        type="password",
+        placeholder="Введите код"
+    )
+
+    if st.button("Войти"):
+        if code in ACCESS_CODES:
+            st.session_state.authenticated = True
+            st.rerun()
+        else:
+            st.error("Неверный код доступа")
+
 
 st.set_page_config(page_title="Система рекомендаций", layout="wide")
+if not st.session_state.authenticated:
+    login_gate()
+    st.stop()
+
 
 # =========================
 # UI STYLE (ЕДИНЫЙ)
