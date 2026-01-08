@@ -16,7 +16,7 @@ USER_ID = "streamlit-ui"
 # AUTH
 # =========================
 ACCESS_CODES = {
-    "emc2026"
+    "EMC"
 }
 
 if "authenticated" not in st.session_state:
